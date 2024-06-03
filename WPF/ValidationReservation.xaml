@@ -13,20 +13,21 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="6*" />
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
+            <RowDefinition Height="1.2*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="3*" />
 
 
@@ -54,11 +55,10 @@
             Stroke="Black" />
         <Label
             Grid.Row="2"
-            Grid.Column="2"
-            Grid.ColumnSpan="1"
-            Width="116"
-            Height="48"
-            HorizontalAlignment="Left"
+            Grid.Column="1"
+            Grid.ColumnSpan="4"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
             Content="Réservation"
             FontSize="18"
             FontWeight="Bold" />
@@ -66,27 +66,18 @@
         <ComboBox
             x:Name="ComboBoxAssurance"
             Grid.Row="3"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
-            Width="200"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            Grid.Column="1">
 
             <ComboBoxItem>Sans Assurance</ComboBoxItem>
             <ComboBoxItem IsSelected="True">Assurance</ComboBoxItem>
             <ComboBoxItem>Avec Assurance</ComboBoxItem>
-
-
         </ComboBox>
+
         <ComboBox
             x:Name="ComboBoxKilometre"
             Grid.Row="3"
-            Grid.Column="4"
-            Grid.ColumnSpan="2"
-            Width="200"
-            Height="30"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            Grid.Column="3"
+            Grid.ColumnSpan="2">
             <ComboBoxItem>- 100km</ComboBoxItem>
             <ComboBoxItem IsSelected="True">Forfait Kilométrique</ComboBoxItem>
             <ComboBoxItem>Entre 100 et 250 km</ComboBoxItem>
@@ -94,24 +85,20 @@
         </ComboBox>
         <Button
             x:Name="ButtonValider"
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="2"
             Grid.ColumnSpan="1"
-            Width="70"
             Height="34"
-            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Click="ButtonValider_Click"
             Content="Valider" />
 
         <Label
-            Grid.Row="4"
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
-            Width="200"
-            Height="36"
+            Grid.Row="5"
+            Grid.Column="1"
+            Grid.ColumnSpan="4"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Content="Montant total : xx euros"
             FontSize="18" />
     </Grid>

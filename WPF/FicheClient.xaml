@@ -8,31 +8,53 @@
     Title="MainWindow"
     Width="700"
     Height="500"
+    MinWidth="700"
+    MinHeight="500"
     mc:Ignorable="d">
     <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.75*" />
+            <ColumnDefinition Width="1.75*" />
+            <ColumnDefinition Width="3.25*" />
+            <ColumnDefinition Width="0.75*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="1.2*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+
         <Image
-            Margin="10,10,500,384"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
             Source="/Images/logoIntermarcher.png"
             Stretch="Fill" />
         <Image
-            Width="75"
+            Grid.Column="4"
             Height="64"
-            HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Source="/Images/indivisu.png"
             Stretch="Fill" />
         <Ellipse
-            Width="73"
-            Height="67"
-            HorizontalAlignment="Right"
+            Grid.Column="4"
+            Height="64"
             VerticalAlignment="Top"
             Stroke="Black" />
 
         <ComboBox
             x:Name="ComboBoxSelectionClient"
+            Grid.Row="4"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
             Width="200"
             Height="30"
-            Margin="0,-15,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
             <ComboBoxItem>Bernabet Gilbert</ComboBoxItem>
@@ -41,129 +63,126 @@
         </ComboBox>
         <RadioButton
             x:Name="ButtonNouveauClient"
-            Width="178"
-            Height="15"
-            Margin="0,159,0,0"
+            Grid.Row="3"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Checked="ButtonNouveauClient_Checked"
             Content="Créer une nouvelle fiche client" />
         <Label
             x:Name="LabelOU"
+            Grid.Row="3"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
             Width="28"
             Height="26"
-            Margin="0,181,0,0"
+            Margin="0,0,0,15"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Content="OU"
-            RenderTransformOrigin="0.163,0.143" />
+            VerticalAlignment="Center"
+            Content="OU" />
+
         <Label
-            Width="60"
-            Height="34"
-            Margin="0,119,0,0"
+            Grid.Row="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top"
+            VerticalAlignment="Bottom"
             Content="Client"
             FontSize="18"
             FontWeight="Bold" />
-        <TextBox
-            x:Name="TextBoxNom"
-            Width="240"
-            Height="18"
-            Margin="356,212,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="Nom"
-            TextWrapping="Wrap"
-            Visibility="Hidden" />
-        <TextBox
-            x:Name="TextBoxPrenom"
-            Width="225"
-            Height="18"
-            Margin="121,212,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="Prénom"
-            TextWrapping="Wrap"
-            Visibility="Hidden" />
-        <TextBox
-            x:Name="TextBoxAdresse"
-            Width="475"
-            Height="18"
-            Margin="121,250,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="Adresse"
-            TextWrapping="Wrap"
-            Visibility="Hidden" />
-        <TextBox
-            x:Name="TextBoxCodePostal"
-            Width="124"
-            Height="18"
-            Margin="121,287,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="Code postal"
-            TextWrapping="Wrap"
-            Visibility="Hidden" />
-        <TextBox
-            x:Name="TextBoxVille"
-            Width="175"
-            Height="18"
-            Margin="259,287,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="Ville"
-            TextWrapping="Wrap"
-            Visibility="Hidden" />
-        <TextBox
-            x:Name="TextBoxPays"
-            Width="141"
-            Height="18"
-            Margin="455,287,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="Pays"
-            TextWrapping="Wrap"
-            Visibility="Hidden" />
-        <TextBox
-            x:Name="TextBoxTelephone"
-            Width="186"
-            Height="18"
-            Margin="121,320,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="Téléphone"
-            TextWrapping="Wrap"
-            Visibility="Hidden" />
-        <TextBox
-            x:Name="TextBoxMail"
-            Width="276"
-            Height="18"
-            Margin="320,320,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="Mail"
-            TextWrapping="Wrap"
-            Visibility="Hidden" />
-        <RadioButton
-            x:Name="ButtonEntreprise"
-            Width="93"
-            Margin="121,0,0,96"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
-            Content="Entreprise"
-            Visibility="Hidden" />
-        <Button
-            x:Name="ButtonValiderFicheClient"
-            Grid.RowSpan="2"
-            Width="70"
-            Height="25"
-            Margin="526,360,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Valider"
-            Visibility="Visible" Click="ButtonValiderFicheClient_Click" />
 
+        <StackPanel
+            Grid.Row="5"
+            Grid.Column="1"
+            Grid.ColumnSpan="2">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox
+                    x:Name="TextBoxNom"
+                    Grid.Column="0"
+                    Text="Nom"
+                    TextWrapping="Wrap" />
+
+                <TextBox
+                    x:Name="TextBoxPrenom"
+                    Grid.Column="1"
+                    Text="Prénom"
+                    TextWrapping="Wrap" />
+            </Grid>
+
+
+
+            <TextBox
+                x:Name="TextBoxAdresse"
+                Grid.Column="0"
+                Margin="0,5,0,0"
+                Text="Adresse"
+                TextWrapping="Wrap" />
+
+            <TextBox
+                x:Name="TextBoxVille"
+                Grid.Column="0"
+                Margin="0,5,0,0"
+                Text="Ville"
+                TextWrapping="Wrap" />
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox
+                    x:Name="TextBoxCodePostal"
+                    Grid.Column="0"
+                    Margin="0,5,0,0"
+                    Text="Code postal"
+                    TextWrapping="Wrap" />
+                <TextBox
+                    x:Name="TextBoxPays"
+                    Grid.Column="1"
+                    Margin="0,5,0,0"
+                    Text="Pays"
+                    TextWrapping="Wrap" />
+
+            </Grid>
+
+            <TextBox
+                x:Name="TextBoxMail"
+                Grid.Column="0"
+                Margin="0,5,0,0"
+                Text="Mail"
+                TextWrapping="Wrap" />
+            <TextBox
+                x:Name="TextBoxTelephone"
+                Grid.Column="1"
+                Margin="0,5,0,0"
+                Text="Téléphone"
+                TextWrapping="Wrap" />
+
+            <RadioButton
+                x:Name="ButtonEntreprise"
+                Margin="0,15,0,0"
+                Content="Entreprise" />
+            <Button
+                x:Name="ButtonValiderFicheClient"
+                Grid.RowSpan="2"
+                Width="70"
+                Height="25"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Click="ButtonValiderFicheClient_Click"
+                Content="Valider" />
+
+        </StackPanel>
     </Grid>
 </Window>
