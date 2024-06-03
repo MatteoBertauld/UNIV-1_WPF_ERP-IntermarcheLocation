@@ -1,0 +1,169 @@
+﻿<Window
+    x:Class="WPF.FicheClient"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPF"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="700"
+    Height="500"
+    mc:Ignorable="d">
+    <Grid>
+        <Image
+            Margin="10,10,500,384"
+            Source="/Images/logoIntermarcher.png"
+            Stretch="Fill" />
+        <Image
+            Width="75"
+            Height="64"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Source="/Images/indivisu.png"
+            Stretch="Fill" />
+        <Ellipse
+            Width="73"
+            Height="67"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Stroke="Black" />
+
+        <ComboBox
+            x:Name="ComboBoxSelectionClient"
+            Width="200"
+            Height="30"
+            Margin="0,-15,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <ComboBoxItem>Bernabet Gilbert</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Selectionner un client</ComboBoxItem>
+            <ComboBoxItem>Mohamed Ifaoui</ComboBoxItem>
+        </ComboBox>
+        <RadioButton
+            x:Name="ButtonNouveauClient"
+            Width="178"
+            Height="15"
+            Margin="0,159,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Checked="ButtonNouveauClient_Checked"
+            Content="Créer une nouvelle fiche client" />
+        <Label
+            x:Name="LabelOU"
+            Width="28"
+            Height="26"
+            Margin="0,181,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="OU"
+            RenderTransformOrigin="0.163,0.143" />
+        <Label
+            Width="60"
+            Height="34"
+            Margin="0,119,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Client"
+            FontSize="18"
+            FontWeight="Bold" />
+        <TextBox
+            x:Name="TextBoxNom"
+            Width="240"
+            Height="18"
+            Margin="356,212,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Nom"
+            TextWrapping="Wrap"
+            Visibility="Hidden" />
+        <TextBox
+            x:Name="TextBoxPrenom"
+            Width="225"
+            Height="18"
+            Margin="121,212,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Prénom"
+            TextWrapping="Wrap"
+            Visibility="Hidden" />
+        <TextBox
+            x:Name="TextBoxAdresse"
+            Width="475"
+            Height="18"
+            Margin="121,250,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Adresse"
+            TextWrapping="Wrap"
+            Visibility="Hidden" />
+        <TextBox
+            x:Name="TextBoxCodePostal"
+            Width="124"
+            Height="18"
+            Margin="121,287,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Code postal"
+            TextWrapping="Wrap"
+            Visibility="Hidden" />
+        <TextBox
+            x:Name="TextBoxVille"
+            Width="175"
+            Height="18"
+            Margin="259,287,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Ville"
+            TextWrapping="Wrap"
+            Visibility="Hidden" />
+        <TextBox
+            x:Name="TextBoxPays"
+            Width="141"
+            Height="18"
+            Margin="455,287,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Pays"
+            TextWrapping="Wrap"
+            Visibility="Hidden" />
+        <TextBox
+            x:Name="TextBoxTelephone"
+            Width="186"
+            Height="18"
+            Margin="121,320,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Téléphone"
+            TextWrapping="Wrap"
+            Visibility="Hidden" />
+        <TextBox
+            x:Name="TextBoxMail"
+            Width="276"
+            Height="18"
+            Margin="320,320,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Mail"
+            TextWrapping="Wrap"
+            Visibility="Hidden" />
+        <RadioButton
+            x:Name="ButtonEntreprise"
+            Width="93"
+            Margin="121,0,0,96"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Content="Entreprise"
+            Visibility="Hidden" />
+        <Button
+            x:Name="ButtonValiderFicheClient"
+            Grid.RowSpan="2"
+            Width="70"
+            Height="25"
+            Margin="526,360,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Valider"
+            Visibility="Visible" Click="ButtonValiderFicheClient_Click" />
+
+    </Grid>
+</Window>

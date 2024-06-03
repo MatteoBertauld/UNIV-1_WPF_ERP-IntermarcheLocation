@@ -1,0 +1,59 @@
+﻿<Window
+    x:Class="WPF.VisualiserReservation"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPF"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="VisualiserReservation"
+    Width="700"
+    Height="500"
+    mc:Ignorable="d">
+    <Grid>
+        <Image
+            Margin="10,10,500,400"
+            Source="/Images/logoIntermarcher.png"
+            Stretch="Fill" />
+        <Image
+            Width="70"
+            Height="70"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Source="/Images/indivisu.png"
+            Stretch="Fill" />
+        <Ellipse
+            Width="70"
+            Height="70"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Stroke="Black" />
+        <Label
+            Width="197"
+            Height="39"
+            Margin="0,60,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Visualiser Réservation"
+            FontSize="18"
+            FontWeight="Bold" />
+        <CheckBox
+            Margin="124,137,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Recherche par Nom" />
+        <CheckBox
+            Margin="375,137,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="rechereche par immatriculation de véhicule" />
+        <TextBox
+            Width="120"
+            Margin="271,176,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text=""
+            TextWrapping="Wrap" />
+        <ListBox x:Name="ListeBoxVehiculeRecherche" Margin="72,216,77,40" />
+        <Button x:Name="ButtonRetour" Content="Retour" HorizontalAlignment="Left" Margin="536,27,0,0" VerticalAlignment="Top" Click="ButtonRetour_Click"/>
+    </Grid>
+</Window>

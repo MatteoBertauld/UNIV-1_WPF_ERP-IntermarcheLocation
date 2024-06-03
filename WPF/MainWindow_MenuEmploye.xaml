@@ -1,0 +1,70 @@
+﻿<Window
+    x:Class="WPF.MainWindow_MenuEmploye"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPF"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MenuEmploye"
+    Width="700"
+    Height="500"
+    mc:Ignorable="d">
+    <Grid>
+        <Image
+            Margin="250,55,260,355"
+            Source="/Images/logoIntermarcher.png"
+            Stretch="Fill" />
+        <Image
+            Width="35"
+            Height="32"
+            Margin="0,360,413,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Source="/Images/indivisu.png"
+            Stretch="Fill" />
+        <Ellipse
+            Width="29"
+            Height="32"
+            Margin="0,360,416,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.65,0.551"
+            Stroke="Black" />
+        <Label
+            Width="201"
+            Height="34"
+            Margin="0,163,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Bienvenue : 'Nom Employé'"
+            FontSize="14"
+            FontWeight="Bold" />
+        <Button
+            x:Name="ButtonEffectuerReservation"
+            Width="200"
+            Height="40"
+            Margin="0,217,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Click="ButtonEffectuerReservation_Click"
+            Content="Effectuer une Réservation" />
+        <Button
+            x:Name="ButtonVisualiserReservation"
+            Width="200"
+            Height="40"
+            Margin="0,284,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Click="ButtonVisualiserReservation_Click"
+            Content="Visualiser les Réservations" />
+        <Button
+            Width="200"
+            Height="40"
+            Margin="0,356,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Panel.ZIndex="-1"
+            Content="Mon Compte" />
+
+    </Grid>
+</Window>

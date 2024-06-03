@@ -1,0 +1,142 @@
+﻿<Window
+    x:Class="WPF.ReservationVehicule"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPF"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="ReservationVehicule"
+    Width="700"
+    Height="500"
+    mc:Ignorable="d">
+    <Grid>
+        <Image
+            Margin="10,10,500,400"
+            Source="/Images/logoIntermarcher.png"
+            Stretch="Fill" />
+        <Image
+            Width="70"
+            Height="70"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Source="/Images/indivisu.png"
+            Stretch="Fill" />
+        <Ellipse
+            Width="70"
+            Height="70"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Stroke="Black" />
+        <Label
+            Width="186"
+            Height="39"
+            Margin="0,45,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Choix des Véhicules"
+            FontSize="18"
+            FontWeight="Bold" />
+        <Button
+            x:Name="Valider_Critère"
+            Width="90"
+            Height="34"
+            Margin="116,428,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="Valider_Critère_Click"
+            Content="Valider Critère" />
+        <ListBox x:Name="ListeBoxVehiculeChoisit" Margin="336,322,48,86" />
+
+
+        <ComboBox
+            x:Name="ComboBoxCategorieVehicule"
+            Width="250"
+            Height="30"
+            Margin="50,241,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Visibility="Hidden">
+            <ComboBoxItem Content="Vehicule" IsSelected="True" />
+            <ComboBoxItem Content="Renault" />
+            <ComboBoxItem Content="Semi Remorque" />
+        </ComboBox>
+
+        <ComboBox
+            x:Name="ComboBoxMagasin"
+            Width="250"
+            Height="30"
+            Margin="50,242,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Visibility="Hidden">
+            <ComboBoxItem Content="Magasin" IsSelected="True" />
+            <ComboBoxItem Content="Annecy" />
+            <ComboBoxItem Content="Grenoble" />
+        </ComboBox>
+        <Button
+            x:Name="ButtonAjouterVehicule"
+            Width="28"
+            Height="28"
+            Margin="478,289,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="ButtonAjouterVehicule_Click"
+            Content="+"
+            FontSize="18" />
+        <Calendar
+            x:Name="CalendarReservation"
+            Width="170"
+            Height="170"
+            Margin="76,216,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Visibility="Visible" />
+        <ListBox x:Name="ListeBoxVehiculeRecherche" Margin="336,128,48,200" />
+        <RadioButton
+            x:Name="ButtonDateRéservation"
+            Margin="92,138,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Checked="ButtonDateRéservation_Checked"
+            Content="Date de réservation" />
+        <RadioButton
+            x:Name="ButtonCategorieVehicule"
+            Margin="92,158,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Checked="ButtonCategorieVehicule_Checked"
+            Content="Catégorie véhicule" />
+        <RadioButton
+            x:Name="ButtonMagasin"
+            Margin="92,186,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Checked="ButtonMagasin_Checked"
+            Content="Magasin" />
+        <Label
+            Width="192"
+            Height="29"
+            Margin="79,97,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Critère de recherche"
+            FontSize="14"
+            FontWeight="Bold" />
+        <Button
+            x:Name="ButtonFiltre"
+            Margin="438,102,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="ButtonFiltre_Click"
+            Content="Filtre : Automatique" />
+        <Button
+            x:Name="ButtonSuivant"
+            Width="58"
+            Height="32"
+            Margin="463,428,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="ButtonSuivant_Click"
+            Content="Suivant" />
+    </Grid>
+</Window>
