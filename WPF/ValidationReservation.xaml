@@ -9,48 +9,82 @@
     Width="700"
     Height="500"
     mc:Ignorable="d">
+
     <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
+
+
+
+        </Grid.RowDefinitions>
+
+
         <Image
-            Margin="0,1,510,409"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
             Source="/Images/logoIntermarcher.png"
             Stretch="Fill" />
         <Image
-            Margin="627,3,-2,420"
+            Grid.Row="0"
+            Grid.Column="5"
+            Grid.ColumnSpan="1"
             Source="/Images/indivisu.png"
             Stretch="Fill" />
+
         <Ellipse
-            Width="73"
-            Height="67"
-            Margin="627,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Grid.Row="0"
+            Grid.Column="5"
             Stroke="Black" />
         <Label
+            Grid.Row="2"
+            Grid.Column="2"
+            Grid.ColumnSpan="1"
             Width="116"
             Height="48"
-            Margin="0,75,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
             Content="Réservation"
             FontSize="18"
             FontWeight="Bold" />
 
         <ComboBox
             x:Name="ComboBoxAssurance"
+            Grid.Row="3"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
             Width="200"
-            Height="30"
-            Margin="80,161,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
+
             <ComboBoxItem>Sans Assurance</ComboBoxItem>
             <ComboBoxItem IsSelected="True">Assurance</ComboBoxItem>
             <ComboBoxItem>Avec Assurance</ComboBoxItem>
+
+
         </ComboBox>
         <ComboBox
             x:Name="ComboBoxKilometre"
+            Grid.Row="3"
+            Grid.Column="4"
+            Grid.ColumnSpan="2"
             Width="200"
             Height="30"
-            Margin="437,161,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
             <ComboBoxItem>- 100km</ComboBoxItem>
@@ -60,17 +94,22 @@
         </ComboBox>
         <Button
             x:Name="ButtonValider"
+            Grid.Row="5"
+            Grid.Column="2"
+            Grid.ColumnSpan="1"
             Width="70"
             Height="34"
-            Margin="0,404,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Click="ButtonValider_Click"
             Content="Valider" />
+
         <Label
+            Grid.Row="4"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
             Width="200"
             Height="36"
-            Margin="0,313,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Montant total : xx euros"
