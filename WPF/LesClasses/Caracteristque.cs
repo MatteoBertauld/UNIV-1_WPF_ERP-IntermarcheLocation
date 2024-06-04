@@ -36,6 +36,7 @@ namespace SAE2._01
 
             set
             {
+                if(string.IsNullOrEmpty(value)) { throw new ArgumentNullException("ATTENTION, la description de l'assurance ne doit pas etre ni nulle ni vide !"); }
                 descriptionAssurance = value;
             }
         }

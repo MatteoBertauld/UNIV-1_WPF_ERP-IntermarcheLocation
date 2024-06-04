@@ -83,6 +83,7 @@ namespace SAE2._01
 
             set
             {
+                if (value > this.DateFinReservation) { throw new ArgumentException("ATTENTION, la date de de début doit etre inférieur à la adte du début de reservation !")}
                 dateDebutReservation = value;
             }
         }
@@ -96,6 +97,7 @@ namespace SAE2._01
 
             set
             {
+                if(value<this.DateDebutReservation) {throw new ArgumentException("ATTENTION, la date de fin doit etre supérieur à la date du début de reservation !") }
                 dateFinReservation = value;
             }
         }
@@ -122,6 +124,7 @@ namespace SAE2._01
 
             set
             {
+                if(string.IsNullOrEmpty(value)) { throw new ArgumentException("ATTENTION, le forfaitKM ne doit pas etre ni nulle ni vide !")}
                 this.forfaitKm = value;
             }
         }

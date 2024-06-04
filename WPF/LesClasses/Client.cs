@@ -51,6 +51,7 @@ namespace SAE2._01
 
             set
             {
+                if(string.IsNullOrEmpty(nomClient)) { throw new ArgumentException("ATTENTION, la valeur ne doit etre ni nulle ni vide !")}
                 nomClient = value;
             }
         }
@@ -81,8 +82,7 @@ namespace SAE2._01
 
             set
             {
-                Match m = Regex.Match(value, "^[0-9]{5}$");
-                if (!m.Success)
+                if(value.Length !=5)
                     throw new ArgumentException("Attention, le code postal doit etre constitué de 5 chiffres");
                 adresseCpClient = value;
             }
@@ -97,6 +97,7 @@ namespace SAE2._01
 
             set
             {
+                if (string.IsNullOrEmpty(value)) { throw new ArgumentNullException("ATTENTION, la valeur ne doit pas etre ni nulle ni vide !"); }
                 adresseVilleClient = value;
             }
         }
@@ -112,7 +113,7 @@ namespace SAE2._01
             {
                 try
                 {
-                    //EmailAddressAttribute email = new EmailAddressAttribute(value);
+                    EmailAddressAttribute email = new EmailAddressAttribute(value);
                     this.mail = mail;
 
                 }
@@ -141,8 +142,8 @@ namespace SAE2._01
 
             set
             {
-                if (!Regex.IsMatch(value, "^[0-9]{5}$"));
-                throw new ArgumentException("Le téléphone portable est incorrect, il faut saisir 10 chiffres");
+                if (!Regex.IsMatch(value, "^[0-9]{5}$"))
+                    throw new ArgumentException("Le téléphone portable est incorrect, il faut saisir 10 chiffres");
 
                 this.telephone = value;
             }

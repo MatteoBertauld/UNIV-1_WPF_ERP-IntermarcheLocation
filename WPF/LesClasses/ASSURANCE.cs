@@ -10,7 +10,7 @@ namespace SAE2._01
     {
         private int numAssurance;
         private string descriptionAssurance;
-        private int PrixAssurance;
+        private int prixAssurance;
 
 
         public int NumAssurance
@@ -36,27 +36,28 @@ namespace SAE2._01
 
             set
             {
+                if(string.IsNullOrEmpty(value)) { throw new ArgumentNullException("ATTENTION, la description d'assurance ne doit pas etre ni nulle ni vide !"); }
                 descriptionAssurance = value;
             }
         }
 
-        public int PrixAssurance1
+        public int PrixAssurance
         {
             get
             {
-                return this.PrixAssurance;
+                return this.prixAssurance;
             }
 
             set
             {
-                this.PrixAssurance = value;
+                this.prixAssurance = value;
             }
         }
         public ASSURANCE(int numAssurance, string descriptionAssurance, int prixAssurance1)
         {
             NumAssurance = numAssurance;
             DescriptionAssurance = descriptionAssurance;
-            PrixAssurance1 = prixAssurance1;
+            PrixAssurance = prixAssurance;
         }
 
 

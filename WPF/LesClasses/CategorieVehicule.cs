@@ -20,6 +20,7 @@ namespace SAE2._01
 
             set
             {
+                if(string.IsNullOrEmpty(value)) { throw new ArgumentNullException("ATTENTION, la valeur ne doit etre ni nulle ni vide !"); }
                 this.nomCategorie = value;
             }
         }

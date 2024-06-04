@@ -43,6 +43,7 @@ namespace SAE2._01
 
             set
             {
+                if(string.IsNullOrEmpty(nomMagasin)) { throw new ArgumentException("ATTENTION, le nom du magasin ne doit pas etre ni nulle ni vide")}
                 nomMagasin = value;
             }
         }
@@ -91,6 +92,7 @@ namespace SAE2._01
 
             set
             {
+                if (string.IsNullOrEmpty(value)) { throw new ArgumentNullException("ATTENTION, la valeur ne doit pas etre ni nulle ni vide !")}
                 adresseVilleMagasin = value;
             }
         }
