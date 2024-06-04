@@ -10,7 +10,19 @@ namespace SAE2._01
     {
         private string nomCategorie;
 
-        public string NomCategorie { get => nomCategorie; set => nomCategorie = value; }
+
+        public string NomCategorie
+        {
+            get
+            {
+                return this.nomCategorie;
+            }
+
+            set
+            {
+                this.nomCategorie = value;
+            }
+        }
 
         public CategorieVehicule(string nomCategorie)
         {
