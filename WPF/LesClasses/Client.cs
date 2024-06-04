@@ -23,6 +23,8 @@ namespace SAE2._01
         private string telephone;
         private string mail;
 
+        private bool estUneEntreprise;
+
         public int NumClient
         {
             get
@@ -146,7 +148,20 @@ namespace SAE2._01
             }
         }
 
-        public Client(string nomClient, string adresseRueClient, string adresseCpClient, string adresseVilleClient,string telephone, string mail)
+        public bool EstUneEntreprise
+        {
+            get
+            {
+                return this.estUneEntreprise;
+            }
+
+            set
+            {
+                this.estUneEntreprise = value;
+            }
+        }
+
+        public Client(string nomClient, string adresseRueClient, string adresseCpClient, string adresseVilleClient,string telephone, string mail) //bool estUneEntreprise
         {
             this.NumClient = StaticAutoIncrementNumClient;
             this.NomClient = nomClient;
@@ -155,6 +170,7 @@ namespace SAE2._01
             this.AdresseVilleClient = adresseVilleClient;
             this.Telephone = telephone;
             this.Mail = mail;
+            this.EstUneEntreprise = true;
         }
 
 
@@ -170,11 +186,12 @@ namespace SAE2._01
         public static ObservableCollection<Client> Read()
         {
             ObservableCollection<Client> lesClients = new ObservableCollection<Client>();
-            String sql = "SELECT * FROM client";
+            String sql = "SELECT * FROM client;";
             DataTable dt = DataAccess.Instance.GetData(sql);
             
             foreach (DataRow res in dt.Rows)
             {
+                Console.WriteLine("ligne : " +res);
                 Client nouveau = new Client(
                     res["nom_client"].ToString(),
                     res["adresse_rue_client"].ToString(),
@@ -188,5 +205,9 @@ namespace SAE2._01
             return lesClients;
         }
 
+        public override string? ToString()
+        {
+            return "Nom " + this.NomClient + "\nTelephone : " + this.Telephone + "\nMail : " + this.Mail;
+        }
     }
 }
