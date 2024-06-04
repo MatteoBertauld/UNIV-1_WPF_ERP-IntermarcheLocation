@@ -15,7 +15,7 @@ namespace WPF
             "Server=srv-peda-new;" +
             "port=5433;" +
             "Database=SAE201_Intermarche;" +
-            "Search Path=Intermarche;" +
+            "Search Path=intermarche;" +
             "uid=bertaulm;" +
             "password=AOD20J;";
 

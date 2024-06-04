@@ -469,7 +469,8 @@
                 Width="200"
                 Height="30"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center" />
+                VerticalAlignment="Center"
+                SelectionChanged="ComboBoxSelectionClient_Selected" />
             <RadioButton
                 x:Name="ButtonNouveauClient"
                 Grid.Row="3"

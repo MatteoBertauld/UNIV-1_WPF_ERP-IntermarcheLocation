@@ -57,6 +57,7 @@ namespace WPF
         public MainWindow()
         {
             InitializeComponent();
+            GridMenuEmploye.Visibility = Visibility.Visible;
             SeConnecter fenetreConnexion = new SeConnecter();
             fenetreConnexion.ShowDialog();
             if (fenetreConnexion.DialogResult == false)
@@ -80,20 +81,24 @@ namespace WPF
             GridFicheClient.Visibility = Visibility.Visible;
         }
 
-        // Fenetre Fiche CLient
+        // Fenetre Fiche Client
 
         private void InitialiserFenetreFicheClient()
         {
             ListeClients = Client.Read();
             ComboBoxSelectionClient.Items.Clear();
+            ComboBoxSelectionClient.Items.Add("Selectionner un Client");
+            ComboBoxSelectionClient.SelectedIndex = 0;
             foreach (Client c in ListeClients)
             {
-                ComboBoxSelectionClient.Items.Add(c);
+                Console.WriteLine(c);
+                ComboBoxSelectionClient.Items.Add(c.NomClient);
             }
         }
 
         private void ButtonNouveauClient_Checked(object sender, RoutedEventArgs e)
         {
+            /*
             TextBoxNom.Visibility = Visibility.Visible;
             TextBoxPrenom.Visibility = Visibility.Visible;
             TextBoxAdresse.Visibility = Visibility.Visible;
@@ -106,13 +111,15 @@ namespace WPF
 
             ComboBoxSelectionClient.Visibility = Visibility.Hidden;
             LabelOU.Visibility = Visibility.Hidden;
+            */
+
+
         }
 
         private void ButtonValiderFicheClient_Click(object sender, RoutedEventArgs e)
         {
             if (CreerNouveauClient)
             {
-                //Client NouveauClient = 
                 ClientSelectionner = true;
             }
 
@@ -123,10 +130,45 @@ namespace WPF
             }
             else
             {
-                Console.WriteLine("Erreur : Aucun cliet n'est séléctionner");
+                Console.WriteLine("Erreur : Aucun client n'est séléctionner");
             }
         }
 
+
+        private void ComboBoxSelectionClient_Selected(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("ValeurChanger");
+            if (ComboBoxSelectionClient.SelectedIndex != 0)
+            {
+                Client clientSelectionner = (Client)ListeClients[ComboBoxSelectionClient.SelectedIndex - 1];
+
+                TextBoxNom.Text = clientSelectionner.NomClient;
+                TextBoxPrenom.Text = "Rajouter Prenom BD";
+                TextBoxAdresse.Text = clientSelectionner.AdresseRueClient;
+                TextBoxVille.Text = clientSelectionner.AdresseVilleClient;
+                TextBoxCodePostal.Text = clientSelectionner.AdresseCpClient;
+                TextBoxPays.Text = "Rajouter pays ?";
+                TextBoxTelephone.Text = clientSelectionner.Telephone;
+                TextBoxMail.Text = clientSelectionner.Mail;
+            }
+            else
+            {
+                TextBoxNom.Text = "Nom";
+                TextBoxPrenom.Text = "Prenom";
+                TextBoxAdresse.Text = "Rue";
+                TextBoxVille.Text = "Ville";
+                TextBoxCodePostal.Text = "Code Postal";
+                TextBoxPays.Text = "Pays";
+                TextBoxTelephone.Text = "Telephone";
+                TextBoxMail.Text = "Mail";
+
+
+
+
+
+
+            }
+        }
 
         // Choix des Vehicules
 
@@ -182,7 +224,7 @@ namespace WPF
         }
 
 
-        //  Fenetre Validation reservation
+        // Fenetre Validation reservation
 
 
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
@@ -200,5 +242,6 @@ namespace WPF
             GridVisualiserReservation.Visibility = Visibility.Hidden;
             GridMenuEmploye.Visibility = Visibility.Visible;
         }
+
     }
 }

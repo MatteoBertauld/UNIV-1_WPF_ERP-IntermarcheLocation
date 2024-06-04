@@ -63,7 +63,7 @@
             Grid.Row="3"
             Grid.Column="2"
             Grid.ColumnSpan="4"
-            Text=""
+            Text="bertaulm"
             TextChanged="TextBoxIdentifiant_TextChanged"
             TextWrapping="Wrap" />
         <Label
@@ -79,7 +79,7 @@
             Grid.Column="2"
             Grid.ColumnSpan="4"
             FontSize="18"
-            Text="     ***********"
+            Text="mdp"
             TextChanged="TextBoxMotDePasse_TextChanged"
             TextWrapping="Wrap" />
         <Label
