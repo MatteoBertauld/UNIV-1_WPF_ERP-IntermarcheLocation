@@ -19,16 +19,138 @@ namespace SAE2._01
         private bool climatisation;
         private string lienPhotoUrl;
 
-        public string Immatriculation { get => immatriculation; set => immatriculation = value; }
-        public string TypeBoite { get => typeBoite; set => typeBoite = value; }
-        public int NumMagasin { get => numMagasin; set => numMagasin = value; }
-        public string NomCategorie { get => nomCategorie; set => nomCategorie = value; }
-        public string NomVehicule { get => nomVehicule; set => nomVehicule = value; }
-        public string DescriptionVehicule { get => descriptionVehicule; set => descriptionVehicule = value; }
-        public int NombrePlaces { get => nombrePlaces; set => nombrePlaces = value; }
-        public decimal PrixLocation { get => prixLocation; set => prixLocation = value; }
-        public bool Climatisation { get => climatisation; set => climatisation = value; }
-        public string LienPhotoUrl { get => lienPhotoUrl; set => lienPhotoUrl = value; }
+
+
+        public string Immatriculation
+        {
+            get
+            {
+                return immatriculation;
+            }
+
+            set
+            {
+                immatriculation = value;
+            }
+        }
+
+        public string TypeBoite
+        {
+            get
+            {
+                return typeBoite;
+            }
+
+            set
+            {
+                typeBoite = value;
+            }
+        }
+
+        public int NumMagasin
+        {
+            get
+            {
+                return numMagasin;
+            }
+
+            set
+            {
+                if (value <= 0) { throw new ArgumentOutOfRangeException("Attention, le numéro de magasin doit etre supérieur à 0"); }
+                numMagasin = value;
+            }
+        }
+
+        public string NomCategorie
+        {
+            get
+            {
+                return nomCategorie;
+            }
+
+            set
+            {
+                nomCategorie = value;
+            }
+        }
+
+        public string NomVehicule
+        {
+            get
+            {
+                return nomVehicule;
+            }
+
+            set
+            {
+                nomVehicule = value;
+            }
+        }
+
+        public string DescriptionVehicule
+        {
+            get
+            {
+                return descriptionVehicule;
+            }
+
+            set
+            {
+                descriptionVehicule = value;
+            }
+        }
+
+        public int NombrePlaces
+        {
+            get
+            {
+                return nombrePlaces;
+            }
+
+            set
+            {
+                nombrePlaces = value;
+            }
+        }
+
+        public decimal PrixLocation
+        {
+            get
+            {
+                return prixLocation;
+            }
+
+            set
+            {
+                prixLocation = value;
+            }
+        }
+
+        public bool Climatisation
+        {
+            get
+            {
+                return climatisation;
+            }
+
+            set
+            {
+                climatisation = value;
+            }
+        }
+
+        public string LienPhotoUrl
+        {
+            get
+            {
+                return this.lienPhotoUrl;
+            }
+
+            set
+            {
+                this.lienPhotoUrl = value;
+            }
+        }
 
         public Vehicule(string immatriculation, string typeBoite, int numMagasin, string nomCategorie, string nomVehicule, string descriptionVehicule, int nombrePlaces, decimal prixLocation, bool climatisation, string lienPhotoUrl)
         {

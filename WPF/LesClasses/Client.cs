@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WPF;
 
@@ -33,6 +35,10 @@ namespace SAE2._01
 
             set
             {
+                if (value <= 0)
+                {
+                    throw new ArgumentException(" le numéro de cleint doit etre supérieur à 0");
+                }
                 numClient = value;
             }
         }
@@ -46,6 +52,7 @@ namespace SAE2._01
 
             set
             {
+                if(string.IsNullOrEmpty(nomClient)) { throw new ArgumentException("ATTENTION, la valeur ne doit etre ni nulle ni vide !")}
                 nomClient = value;
             }
         }
@@ -59,6 +66,10 @@ namespace SAE2._01
 
             set
             {
+                if(string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException("L'adresse de la rue du client ne doit pas etre ni nulle ni vide");
+                }
                 adresseRueClient = value;
             }
         }
@@ -72,6 +83,8 @@ namespace SAE2._01
 
             set
             {
+                if(value.Length !=5)
+                    throw new ArgumentException("Attention, le code postal doit etre constitué de 5 chiffres");
                 adresseCpClient = value;
             }
         }
@@ -85,6 +98,7 @@ namespace SAE2._01
 
             set
             {
+                if (string.IsNullOrEmpty(value)) { throw new ArgumentNullException("ATTENTION, la valeur ne doit pas etre ni nulle ni vide !"); }
                 adresseVilleClient = value;
             }
         }
@@ -98,7 +112,16 @@ namespace SAE2._01
 
             set
             {
-                this.mail = value;
+                try
+                {
+                    EmailAddressAttribute email = new EmailAddressAttribute(value);
+                    this.mail = mail;
+
+                }
+                catch (Exception ex) { throw new ArgumentException("L'email est invalide");}
+                {
+                }
+               
             }
         }
 
@@ -111,6 +134,9 @@ namespace SAE2._01
 
             set
             {
+                if (!Regex.IsMatch(value, "^[0-9]{5}$"))
+                    throw new ArgumentException("Le téléphone portable est incorrect, il faut saisir 10 chiffres");
+
                 this.telephone = value;
             }
         }

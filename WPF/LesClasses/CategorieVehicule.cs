@@ -10,7 +10,20 @@ namespace SAE2._01
     {
         private string nomCategorie;
 
-        public string NomCategorie { get => nomCategorie; set => nomCategorie = value; }
+
+        public string NomCategorie
+        {
+            get
+            {
+                return this.nomCategorie;
+            }
+
+            set
+            {
+                if(string.IsNullOrEmpty(value)) { throw new ArgumentNullException("ATTENTION, la valeur ne doit etre ni nulle ni vide !"); }
+                this.nomCategorie = value;
+            }
+        }
 
         public CategorieVehicule(string nomCategorie)
         {
