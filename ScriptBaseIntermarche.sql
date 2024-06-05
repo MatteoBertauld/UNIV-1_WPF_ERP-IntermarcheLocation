@@ -1,19 +1,20 @@
 /*==============================================================*/
 /* Nom de SGBD :  PostgreSQL 8                                  */
 /* Date de création :  13/05/2024 11:05:43                      */
-/*==============================================================*/
+/*==============================================================
 
-
+drop table if exists ASSURANCE;
+drop table if exists CARACTERISTIQUE;
+drop table if exists CATEGORIE_VEHICULE;
+drop table if exists CLIENT;
 drop table if exists DETAIL_CARACTERISTIQUE;
 drop table if exists DETAIL_RESERVATION;
 drop table if exists EMPLOYE;
+drop table if exists MAGASIN;
 drop table if exists RESERVATION;
 drop table if exists VEHICULE;
-drop table if exists CATEGORIE_VEHICULE;
-drop table if exists ASSURANCE;
-drop table if exists MAGASIN;
-drop table if exists CARACTERISTIQUE;
-drop table if exists CLIENT;
+*/
+
 
 
 /*==============================================================*/
@@ -49,11 +50,13 @@ create table CATEGORIE_VEHICULE (
 create table CLIENT (
    NUM_CLIENT           SERIAL               not null,
    NOM_CLIENT           VARCHAR(50)          null,
-   ADRESSE_RUE_CLIENT    VARCHAR(200)         null,
+   PRENOM_CLIENT	VARCHAR(50)	     null,
+   ADRESSE_RUE_CLIENT    VARCHAR(200)        null,
    ADRESSE_CP_CLIENT    CHAR(5)              null,
    ADRESSE_VILLE_CLIENT VARCHAR(50)          null,
    TELEPHONE_CLIENT     CHAR(10)             null,
    MAIL_CLIENT          VARCHAR(150)         null,
+   ESTPARTICULIER	BOOL		     not null,
    constraint PK_CLIENT primary key (NUM_CLIENT)
 );
 

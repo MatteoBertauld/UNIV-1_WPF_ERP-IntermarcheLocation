@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,11 @@ namespace WPF
     /// </summary>
     public partial class SeConnecter : Window
     {
-        string identifiantSaisie;
-        string motDePasseSaisie;
+        private static string identifiantSaisie;
+        private static string motDePasseSaisie;
 
 
-        public string IdentifiantSaisie
+        public static string IdentifiantSaisie
         {
             get
             {
@@ -37,16 +38,16 @@ namespace WPF
             }
         }
 
-        public string MotDePasseSaisie
+        public static string MotDePasseSaisie
         {
             get
             {
-                return this.motDePasseSaisie;
+                return motDePasseSaisie;
             }
 
             set
             {
-                this.motDePasseSaisie = value;
+                motDePasseSaisie = value;
             }
         }
 
@@ -61,13 +62,11 @@ namespace WPF
         {
 
             Console.WriteLine("Identifiant saisie : " + IdentifiantSaisie + "\nMot de passe Saisie : " + MotDePasseSaisie);
-
-            if (IdentifiantSaisie == "bertaulm" && MotDePasseSaisie == "mdp")
+            if (DataAccess.Instance.ConnexionBD())
             {
                 Console.WriteLine("Connexion réussi");
                 DialogResult = true;
             }
-            Console.WriteLine("Connexion échoué");
         }
 
         private void TextBoxIdentifiant_TextChanged(object sender, TextChangedEventArgs e)
@@ -82,7 +81,7 @@ namespace WPF
 
         private void Label_MouseEnter(object sender, MouseEventArgs e)
         {
-            MessageBoxResult res = MessageBox.Show(this,
+            MessageBoxResult res = MessageBox.Show(
                 "Vérifier que l'identifiant et le mot de passe saisie correspond " +
                 "; Ci cela ne marche toujours pas conctacter votre employeur", "Aide",
                     MessageBoxButton.OK, MessageBoxImage.Information);

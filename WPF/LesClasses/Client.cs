@@ -11,17 +11,18 @@ namespace SAE2._01
 {
     public class Client
     {
-        private static int staticAutoIncrementNumClient;
+        private static int autoIncrementNumClient;
 
         private int numClient;
         private string nomClient;
+        private string prenomClient;
         private string adresseRueClient;
         private string adresseCpClient;
         private string adresseVilleClient;
         private string telephone;
         private string mail;
+        private bool estParticuler;
 
-        private bool estUneEntreprise;
 
         public int NumClient
         {
@@ -101,15 +102,6 @@ namespace SAE2._01
             }
         }
 
-        public static int StaticAutoIncrementNumClient
-        {
-            get
-            {
-                staticAutoIncrementNumClient += 1;
-                return staticAutoIncrementNumClient;
-            }
-        }
-
         public string Telephone
         {
             get
@@ -123,38 +115,69 @@ namespace SAE2._01
             }
         }
 
-        public bool EstUneEntreprise
+
+        public bool EstParticuler
         {
             get
             {
-                return this.estUneEntreprise;
+                return this.estParticuler;
             }
 
             set
             {
-                this.estUneEntreprise = value;
+                this.estParticuler = value;
             }
         }
 
-        public Client(string nomClient, string adresseRueClient, string adresseCpClient, string adresseVilleClient,string telephone, string mail) //bool estUneEntreprise
+        public string PrenomClient
         {
-            this.NumClient = StaticAutoIncrementNumClient;
+            get
+            {
+                return this.prenomClient;
+            }
+
+            set
+            {
+                this.prenomClient = value;
+            }
+        }
+
+        public static int AutoIncrementNumClient
+        {
+            get
+            {
+                return autoIncrementNumClient;
+            }
+
+            set
+            {
+                autoIncrementNumClient = value;
+            }
+        }
+
+        public Client(string nomClient,string prenomClient, string adresseRueClient, string adresseCpClient, string adresseVilleClient,string telephone, string mail,bool estParticulier)
+        {
+            this.NumClient = AutoIncrementNumClient;
             this.NomClient = nomClient;
+            this.PrenomClient = prenomClient;
             this.AdresseRueClient = adresseRueClient;
             this.AdresseCpClient = adresseCpClient;
             this.AdresseVilleClient = adresseVilleClient;
             this.Telephone = telephone;
             this.Mail = mail;
-            this.EstUneEntreprise = true;
+            this.EstParticuler = estParticulier;
         }
 
 
         public int Create()
         {
-            String sql = $"insert into client (num_client,nom_client,adresse_rue_client,adresse_cp_client,adresse_ville_client,telephone_client,mail_client) values (" +
-            $"'{this.NumClient}','{this.NomClient}'," +
+            String sql = $"insert into client (num_client,nom_client,prenom_client,adresse_rue_client,adresse_cp_client,adresse_ville_client,telephone_client,mail_client,estparticulier) values (" +
+            $"'{this.NumClient}','{this.NomClient}','{this.PrenomClient}'," +
             $"'{this.AdresseRueClient}','{this.AdresseCpClient}','{this.AdresseVilleClient}'," +
-            $"{this.Telephone}','{this.Mail}');";
+            $"'{this.Telephone}','{this.Mail}',{this.EstParticuler});";
+
+
+            Console.WriteLine("Client créer avec succès");
 
             return DataAccess.Instance.SetData(sql);
         }
@@ -169,11 +192,13 @@ namespace SAE2._01
                 Console.WriteLine("ligne : " +res);
                 Client nouveau = new Client(
                     res["nom_client"].ToString(),
+                    res["prenom_client"].ToString(),
                     res["adresse_rue_client"].ToString(),
                     res["adresse_cp_client"].ToString(),
                     res["adresse_ville_client"].ToString(),
                     res["telephone_client"].ToString(),
-                    res["mail_client"].ToString()
+                    res["mail_client"].ToString(),
+                    (bool)res["estparticulier"]
                     );
                 lesClients.Add(nouveau);
             }

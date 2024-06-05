@@ -5,24 +5,22 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WPF
 {
     public class DataAccess
     {
         private static DataAccess instance;
-        private static string strConnexion = 
+
+        private static string strConnexion =
             "Server=srv-peda-new;" +
             "port=5433;" +
             "Database=SAE201_Intermarche;" +
-            "Search Path=intermarche;" +
-            "uid=bertaulm;" +
-            "password=AOD20J;";
+            "Search Path=sae;";
 
-        private DataAccess()
-        {
-            ConnexionBD();
-        }
+
+        
         public static DataAccess Instance
         {
             get
@@ -34,24 +32,32 @@ namespace WPF
                 return instance;
             }
         }
+        
+
         public NpgsqlConnection? Connexion
         {
             get;
             set;
         }
 
-        public void ConnexionBD()
+        public bool ConnexionBD()
         {
+            
+
             try
             {
                 Connexion = new NpgsqlConnection();
+                strConnexion += "uid="+ SeConnecter.IdentifiantSaisie + ";" + "password=" + SeConnecter.MotDePasseSaisie + ";";
+                Console.WriteLine(strConnexion);
                 Connexion.ConnectionString = strConnexion;
                 Connexion.Open();
+                return true;
             }
             catch (Exception e)
             {
-                Console.WriteLine("pb de connexion : " + e);
-                // juste pour le debug : à transformer en MsgBox 
+                MessageBoxResult res = MessageBox.Show("Mot de passe ou Identifiant incorrect", "Erreur de Connexion",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
         }
         public void DeconnexionBD()
@@ -81,7 +87,6 @@ namespace WPF
         }
         public int SetData(string setSQL)
         {
-
             try
             {
                 NpgsqlCommand sqlCommand = new NpgsqlCommand(setSQL, Connexion);

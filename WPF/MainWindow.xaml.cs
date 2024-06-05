@@ -57,28 +57,17 @@ namespace WPF
         public MainWindow()
         {
             InitializeComponent();
-            GridMenuEmploye.Visibility = Visibility.Visible;
+            GridFicheClient.Visibility = Visibility.Visible;
+            GridVisualiserReservation.Visibility = Visibility.Visible;
+            GridReservationVehicule.Visibility  = Visibility.Hidden;
+            GridValidationReservation.Visibility = Visibility.Hidden;
+
             SeConnecter fenetreConnexion = new SeConnecter();
             fenetreConnexion.ShowDialog();
             if (fenetreConnexion.DialogResult == false)
             {
                 System.Windows.Application.Current.Shutdown();
             }
-        }
-
-        // Fenetre MenuEmploye
-
-        private void ButtonVisualiserReservation_Click(object sender, RoutedEventArgs e)
-        {
-            GridMenuEmploye.Visibility = Visibility.Hidden;
-            GridVisualiserReservation.Visibility = Visibility.Visible;
-        }
-
-        private void ButtonEffectuerReservation_Click(object sender, RoutedEventArgs e)
-        {
-            InitialiserFenetreFicheClient();
-            GridMenuEmploye.Visibility = Visibility.Hidden;
-            GridFicheClient.Visibility = Visibility.Visible;
         }
 
         // Fenetre Fiche Client
@@ -118,10 +107,16 @@ namespace WPF
 
         private void ButtonValiderFicheClient_Click(object sender, RoutedEventArgs e)
         {
-            if (CreerNouveauClient)
+            if (ButtonNouveauClient.IsChecked == true)
             {
                 ClientSelectionner = true;
+                bool estParticulier = false;
+                if (ButtonEntreprise.IsChecked == true){ estParticulier = true; }
+                Client c = new Client(TextBoxNom.Text, TextBoxPrenom.Text, TextBoxAdresse.Text, TextBoxVille.Text, TextBoxCodePostal.Text, TextBoxTelephone.Text, TextBoxMail.Text, estParticulier);
+                c.Create();
             }
+
+            if (ComboBoxSelectionClient.SelectedIndex != 0) { ClientSelectionner = true; }
 
             if (ClientSelectionner)
             {
@@ -138,18 +133,18 @@ namespace WPF
         private void ComboBoxSelectionClient_Selected(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("ValeurChanger");
-            if (ComboBoxSelectionClient.SelectedIndex != 0)
+            if (ComboBoxSelectionClient.SelectedIndex > 0)
             {
                 Client clientSelectionner = (Client)ListeClients[ComboBoxSelectionClient.SelectedIndex - 1];
 
                 TextBoxNom.Text = clientSelectionner.NomClient;
-                TextBoxPrenom.Text = "Rajouter Prenom BD";
+                TextBoxPrenom.Text = clientSelectionner.PrenomClient;
                 TextBoxAdresse.Text = clientSelectionner.AdresseRueClient;
                 TextBoxVille.Text = clientSelectionner.AdresseVilleClient;
                 TextBoxCodePostal.Text = clientSelectionner.AdresseCpClient;
-                TextBoxPays.Text = "Rajouter pays ?";
                 TextBoxTelephone.Text = clientSelectionner.Telephone;
                 TextBoxMail.Text = clientSelectionner.Mail;
+                ButtonEntreprise.IsChecked = clientSelectionner.EstParticuler;
             }
             else
             {
@@ -158,15 +153,8 @@ namespace WPF
                 TextBoxAdresse.Text = "Rue";
                 TextBoxVille.Text = "Ville";
                 TextBoxCodePostal.Text = "Code Postal";
-                TextBoxPays.Text = "Pays";
                 TextBoxTelephone.Text = "Telephone";
                 TextBoxMail.Text = "Mail";
-
-
-
-
-
-
             }
         }
 
@@ -204,6 +192,7 @@ namespace WPF
         private void ButtonAjouterVehicule_Click(object sender, RoutedEventArgs e)
         {
             ListeBoxVehiculeChoisit.Items.Add("Véhicule");
+            GridFicheClient.Visibility = Visibility.Visible;
         }
 
 
@@ -230,7 +219,7 @@ namespace WPF
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
         {
             GridValidationReservation.Visibility = Visibility.Hidden;
-            GridMenuEmploye.Visibility = Visibility.Visible;
+            GridFicheClient.Visibility = Visibility.Visible;
         }
 
 
@@ -240,7 +229,7 @@ namespace WPF
         private void ButtonRetour_Click(object sender, RoutedEventArgs e)
         {
             GridVisualiserReservation.Visibility = Visibility.Hidden;
-            GridMenuEmploye.Visibility = Visibility.Visible;
+            GridFicheClient.Visibility = Visibility.Visible;
         }
 
     }
