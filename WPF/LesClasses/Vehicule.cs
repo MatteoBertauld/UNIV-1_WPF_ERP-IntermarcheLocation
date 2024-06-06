@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SAE2._01
+namespace WPF
 {
     public class Vehicule
     {
@@ -165,5 +167,34 @@ namespace SAE2._01
             Climatisation = climatisation;
             LienPhotoUrl = lienPhotoUrl;
         }
+
+        public static ObservableCollection<Vehicule> Read()
+        {
+            ObservableCollection<Vehicule> lesVehicule = new ObservableCollection<Vehicule>();
+            String sql = "SELECT * FROM Vehicule;";
+            DataTable dt = DataAccess.Instance.GetData(sql);
+            if (dt != null)
+            {
+                foreach (DataRow res in dt.Rows)
+                {
+                    Console.WriteLine("ligne : " + res);
+                    Vehicule nouveauVehicule = new Vehicule(
+                        res["immatriculation"].ToString(),
+                        res["type_boite"].ToString(),
+                        (int)res["num_magasin"],
+                        res["nom_categorie"].ToString(),
+                        res["nom_vehicule"].ToString(),
+                        res["description_vehicule"].ToString(),
+                        (int)res["nombre_places"],
+                        (decimal)(res["prix_location"]),
+                        (bool)res["climatisation"],
+                        res["lien_phoo_url"].ToString()
+                        );
+                    lesVehicule.Add(nouveauVehicule);
+                }
+            }
+            return lesVehicule;
+        }
+
     }
 }

@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace SAE2._01
+namespace WPF
 {
     public class detailReservation
     {
 
         private string immatriculation;
-        private int numCaracteristique;
         private string valeurCaracteristique;
+        private Caracteristque caracteristqueVehicule;
 
         public string Immatriculation
         {
@@ -21,29 +22,22 @@ namespace SAE2._01
                 if (!Regex.IsMatch(value, "^[A-Z]{2}-[0-9]{3}-[A-Z]{2}$"))
                     throw new ArgumentException("ATTENTION, il faut respecter les caractères de la plaque d'immatriculation !");
 
-                this.telephone = value;
+                this.Immatriculation = value;
             }
         }
-
-       
-
-        public int NumCaracteristique
-        {
-            get { return numCaracteristique; }
-            set { if (value = null) { throw new ArgumentException("ATTENTION, le numéro caractéristique ne doit pas etre nul !")} numCaracteristique = value; }
-        }
-
-        
+   
         public string ValeurCaracteristique
         {
             get { return valeurCaracteristique; }
-            set { if (string.IsNullOrEmpty) { throw new ArgumentException("ATTENTION, la valeur caractéristique ne doit pas ere ni nulle ni vide !")} valeurCaracteristique = value; }
+            set { if (string.IsNullOrEmpty(value)) { throw new ArgumentException("ATTENTION, la valeur caractéristique ne doit pas ere ni nulle ni vide !"); } valeurCaracteristique = value; }
         }
 
-        public detailReservation(string immatriculation, int numCaracteristique, string valeurCaracteristique)
+        public Caracteristque CaracteristqueVehicule { get => caracteristqueVehicule; set => caracteristqueVehicule = value; }
+
+        public detailReservation(string immatriculation, Caracteristque caracteristque, string valeurCaracteristique)
         {
             Immatriculation = immatriculation;
-            NumCaracteristique = numCaracteristique;
+            this.CaracteristqueVehicule = CaracteristqueVehicule;
             ValeurCaracteristique = valeurCaracteristique;
         }
     }

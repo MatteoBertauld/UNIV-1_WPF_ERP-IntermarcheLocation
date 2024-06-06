@@ -1,5 +1,4 @@
-﻿using SAE2._01;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,11 +20,11 @@ namespace WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ApplicationData data;
         private bool Filtre = false;
         bool clientSelectionner = true;
         bool creerNouveauClient;
-        ObservableCollection<Client> ListeClients = new ObservableCollection<Client>();
-
+        
 
         public bool ClientSelectionner
         {
@@ -56,12 +55,9 @@ namespace WPF
 
         public MainWindow()
         {
+            data = new ApplicationData();
             InitializeComponent();
-            GridFicheClient.Visibility = Visibility.Visible;
-            GridVisualiserReservation.Visibility = Visibility.Visible;
-            GridReservationVehicule.Visibility  = Visibility.Hidden;
-            GridValidationReservation.Visibility = Visibility.Hidden;
-
+            InitialiserFenetreFicheClient();
             SeConnecter fenetreConnexion = new SeConnecter();
             fenetreConnexion.ShowDialog();
             if (fenetreConnexion.DialogResult == false)
@@ -74,46 +70,45 @@ namespace WPF
 
         private void InitialiserFenetreFicheClient()
         {
-            ListeClients = Client.Read();
             ComboBoxSelectionClient.Items.Clear();
             ComboBoxSelectionClient.Items.Add("Selectionner un Client");
             ComboBoxSelectionClient.SelectedIndex = 0;
-            foreach (Client c in ListeClients)
+            foreach (Client c in data.LesClients)
             {
                 Console.WriteLine(c);
-                ComboBoxSelectionClient.Items.Add(c.NomClient);
+                ComboBoxSelectionClient.Items.Add(c.NomClient + " " + c.PrenomClient);
             }
         }
 
         private void ButtonNouveauClient_Checked(object sender, RoutedEventArgs e)
         {
-            /*
-            TextBoxNom.Visibility = Visibility.Visible;
-            TextBoxPrenom.Visibility = Visibility.Visible;
-            TextBoxAdresse.Visibility = Visibility.Visible;
-            TextBoxVille.Visibility = Visibility.Visible;
-            TextBoxCodePostal.Visibility = Visibility.Visible;
-            TextBoxPays.Visibility = Visibility.Visible;
-            TextBoxTelephone.Visibility = Visibility.Visible;
-            TextBoxMail.Visibility = Visibility.Visible;
-            ButtonEntreprise.Visibility = Visibility.Visible;
-
-            ComboBoxSelectionClient.Visibility = Visibility.Hidden;
-            LabelOU.Visibility = Visibility.Hidden;
-            */
-
-
+            FicheClient client = new FicheClient(true);
+            client.Show();
         }
 
+        private void ButtonAfficherDetailClient_Click(object sender, RoutedEventArgs e)
+        {
+            FicheClient client = new FicheClient(false);
+            client.Show();
+        }
+
+
+
+        /*
         private void ButtonValiderFicheClient_Click(object sender, RoutedEventArgs e)
         {
             if (ButtonNouveauClient.IsChecked == true)
             {
+                FicheClient client = new FicheClient();
+                client.ShowDialog();
+                
                 ClientSelectionner = true;
                 bool estParticulier = false;
+                /*
                 if (ButtonEntreprise.IsChecked == true){ estParticulier = true; }
                 Client c = new Client(TextBoxNom.Text, TextBoxPrenom.Text, TextBoxAdresse.Text, TextBoxVille.Text, TextBoxCodePostal.Text, TextBoxTelephone.Text, TextBoxMail.Text, estParticulier);
                 c.Create();
+                
             }
 
             if (ComboBoxSelectionClient.SelectedIndex != 0) { ClientSelectionner = true; }
@@ -128,6 +123,7 @@ namespace WPF
                 Console.WriteLine("Erreur : Aucun client n'est séléctionner");
             }
         }
+        */
 
 
         private void ComboBoxSelectionClient_Selected(object sender, RoutedEventArgs e)
@@ -135,8 +131,9 @@ namespace WPF
             Console.WriteLine("ValeurChanger");
             if (ComboBoxSelectionClient.SelectedIndex > 0)
             {
-                Client clientSelectionner = (Client)ListeClients[ComboBoxSelectionClient.SelectedIndex - 1];
-
+                Client clientSelectionner = (Client)data.LesClients[ComboBoxSelectionClient.SelectedIndex - 1];
+                
+                /*
                 TextBoxNom.Text = clientSelectionner.NomClient;
                 TextBoxPrenom.Text = clientSelectionner.PrenomClient;
                 TextBoxAdresse.Text = clientSelectionner.AdresseRueClient;
@@ -145,20 +142,10 @@ namespace WPF
                 TextBoxTelephone.Text = clientSelectionner.Telephone;
                 TextBoxMail.Text = clientSelectionner.Mail;
                 ButtonEntreprise.IsChecked = clientSelectionner.EstParticuler;
-            }
-            else
-            {
-                TextBoxNom.Text = "Nom";
-                TextBoxPrenom.Text = "Prenom";
-                TextBoxAdresse.Text = "Rue";
-                TextBoxVille.Text = "Ville";
-                TextBoxCodePostal.Text = "Code Postal";
-                TextBoxTelephone.Text = "Telephone";
-                TextBoxMail.Text = "Mail";
+                */
             }
         }
 
-        // Choix des Vehicules
 
 
         private void ButtonMagasin_Checked(object sender, RoutedEventArgs e)
@@ -182,54 +169,10 @@ namespace WPF
             ComboBoxCategorieVehicule.Visibility = Visibility.Hidden;
         }
 
-        private void ButtonFiltre_Click(object sender, RoutedEventArgs e)
-        {
-            if (Filtre) { ButtonFiltre.Content = "Filtre : Automatique"; }
-            else { ButtonFiltre.Content = "Filtre : Manuelle"; }
-            Filtre = !Filtre;
-        }
 
         private void ButtonAjouterVehicule_Click(object sender, RoutedEventArgs e)
         {
             ListeBoxVehiculeChoisit.Items.Add("Véhicule");
-            GridFicheClient.Visibility = Visibility.Visible;
-        }
-
-
-        private void Valider_Critère_Click(object sender, RoutedEventArgs e)
-        {
-            /*
-            ListeBoxVehiculeRecherche.Items.Clear();
-            ListeBoxVehiculeRecherche.Items.Add("Véhicule 1");
-            ListeBoxVehiculeRecherche.Items.Add("Véhicule 2");
-            ListeBoxVehiculeRecherche.Items.Add("Véhicule 3");
-            */
-        }
-
-        private void ButtonSuivant_Click(object sender, RoutedEventArgs e)
-        {
-            GridReservationVehicule.Visibility = Visibility.Hidden;
-            GridValidationReservation.Visibility = Visibility.Visible;
-        }
-
-
-        // Fenetre Validation reservation
-
-
-        private void ButtonValider_Click(object sender, RoutedEventArgs e)
-        {
-            GridValidationReservation.Visibility = Visibility.Hidden;
-            GridFicheClient.Visibility = Visibility.Visible;
-        }
-
-
-        // Fenetre Visualiser Reservation
-
-
-        private void ButtonRetour_Click(object sender, RoutedEventArgs e)
-        {
-            GridVisualiserReservation.Visibility = Visibility.Hidden;
-            GridFicheClient.Visibility = Visibility.Visible;
         }
 
     }

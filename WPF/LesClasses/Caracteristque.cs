@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SAE2._01
+namespace WPF
 {
     public class Caracteristque
     {

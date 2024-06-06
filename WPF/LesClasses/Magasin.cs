@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace SAE2._01
+namespace WPF
 {
     public class Magasin
     {
@@ -23,13 +23,10 @@ namespace SAE2._01
             {
                 return numMagasin;
             }
-
+            
             set
             {
-                if ((value <= 0){ throw new ArgumentException("Le numéro de magasin doit etre supérieur à 0");}
-                {
-                    
-                }
+                if (value <= 0) { throw new ArgumentException("Le numéro de magasin doit etre supérieur à 0");}
                 numMagasin = value;
             }
         }
@@ -43,7 +40,7 @@ namespace SAE2._01
 
             set
             {
-                if(string.IsNullOrEmpty(nomMagasin)) { throw new ArgumentException("ATTENTION, le nom du magasin ne doit pas etre ni nulle ni vide")}
+                if(string.IsNullOrEmpty(nomMagasin)) { throw new ArgumentException("ATTENTION, le nom du magasin ne doit pas etre ni nulle ni vide"); }
                 nomMagasin = value;
             }
         }
@@ -92,7 +89,7 @@ namespace SAE2._01
 
             set
             {
-                if (string.IsNullOrEmpty(value)) { throw new ArgumentNullException("ATTENTION, la valeur ne doit pas etre ni nulle ni vide !")}
+                if (string.IsNullOrEmpty(value)) { throw new ArgumentNullException("ATTENTION, la valeur ne doit pas etre ni nulle ni vide !"); }
                 adresseVilleMagasin = value;
             }
         }

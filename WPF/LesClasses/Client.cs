@@ -4,12 +4,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WPF;
 
-namespace SAE2._01
+namespace WPF
 {
     public class Client
     {
@@ -52,7 +53,7 @@ namespace SAE2._01
 
             set
             {
-                if(string.IsNullOrEmpty(nomClient)) { throw new ArgumentException("ATTENTION, la valeur ne doit etre ni nulle ni vide !")}
+                if(string.IsNullOrEmpty(nomClient)) { throw new ArgumentException("ATTENTION, la valeur ne doit etre ni nulle ni vide !"); }
                 nomClient = value;
             }
         }
@@ -114,13 +115,10 @@ namespace SAE2._01
             {
                 try
                 {
-                    EmailAddressAttribute email = new EmailAddressAttribute(value);
-                    this.mail = mail;
-
+                    MailAddress email = new MailAddress(value);
+                    this.Mail = value;
                 }
                 catch (Exception ex) { throw new ArgumentException("L'email est invalide");}
-                {
-                }
                
             }
         }
@@ -212,28 +210,30 @@ namespace SAE2._01
             ObservableCollection<Client> lesClients = new ObservableCollection<Client>();
             String sql = "SELECT * FROM client;";
             DataTable dt = DataAccess.Instance.GetData(sql);
-            
-            foreach (DataRow res in dt.Rows)
+            if (dt != null)
             {
-                Console.WriteLine("ligne : " +res);
-                Client nouveau = new Client(
-                    res["nom_client"].ToString(),
-                    res["prenom_client"].ToString(),
-                    res["adresse_rue_client"].ToString(),
-                    res["adresse_cp_client"].ToString(),
-                    res["adresse_ville_client"].ToString(),
-                    res["telephone_client"].ToString(),
-                    res["mail_client"].ToString(),
-                    (bool)res["estparticulier"]
-                    );
-                lesClients.Add(nouveau);
+                foreach (DataRow res in dt.Rows)
+                {
+                    Console.WriteLine("ligne : " + res);
+                    Client nouveau = new Client(
+                        res["nom_client"].ToString(),
+                        res["prenom_client"].ToString(),
+                        res["adresse_rue_client"].ToString(),
+                        res["adresse_cp_client"].ToString(),
+                        res["adresse_ville_client"].ToString(),
+                        res["telephone_client"].ToString(),
+                        res["mail_client"].ToString(),
+                        (bool)res["estparticulier"]
+                        );
+                    lesClients.Add(nouveau);
+                }
             }
             return lesClients;
         }
 
         public override string? ToString()
         {
-            return "Nom " + this.NomClient + "\nTelephone : " + this.Telephone + "\nMail : " + this.Mail;
+            return "Nom " + this.NomClient + "\nPrenom : " + this.PrenomClient;
         }
     }
 }

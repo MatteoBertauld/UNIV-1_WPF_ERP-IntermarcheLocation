@@ -79,7 +79,7 @@
             Grid.Column="2"
             Grid.ColumnSpan="4"
             FontSize="18"
-            Text="mdp"
+            Text="AOD20J"
             TextChanged="TextBoxMotDePasse_TextChanged"
             TextWrapping="Wrap" />
         <Label
