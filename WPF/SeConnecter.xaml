@@ -58,14 +58,15 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <TextBox
+		<TextBox
             x:Name="TextBoxIdentifiant"
             Grid.Row="3"
             Grid.Column="2"
             Grid.ColumnSpan="4"
-            Text="bertaulm"
             TextChanged="TextBoxIdentifiant_TextChanged"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap"
+			Text="{Binding Nom}"/>
+			
         <Label
             Grid.Row="2"
             Grid.Column="3"
@@ -81,7 +82,9 @@
             FontSize="18"
             Text="AOD20J"
             TextChanged="TextBoxMotDePasse_TextChanged"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap"
+			Text="{Binding Mot De Passe }"
+			/>
         <Label
             Grid.Row="4"
             Grid.Column="3"
