@@ -22,8 +22,29 @@ namespace WPF
         public FicheClient(bool CreerCLient)
         {
             InitializeComponent();
-            if (CreerCLient ) {ButtonValiderFicheClient.Content = "Créer Client";}
+            if (CreerCLient) { ButtonValiderFicheClient.Content = "Créer Client"; }
             else { ButtonValiderFicheClient.Content = "Retour"; }
+        }
+
+        private void ButtonValiderFicheClient_Click(object sender, RoutedEventArgs e)
+        {
+            bool ok = true;
+            foreach (UIElement uie in StackPanelFicheClient.Children)
+            {
+                if (uie != null)
+                {
+                    if (uie is TextBox)
+                    {
+                        TextBox txt = (TextBox)uie; txt.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                    }
+                    if (Validation.GetHasError(uie)) { ok = false; }
+                }
+            }
+            if (ok)
+            {
+                DialogResult = true;
+                //MessageBox.Show("Informations invalides", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

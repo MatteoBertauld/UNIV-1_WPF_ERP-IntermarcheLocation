@@ -145,6 +145,7 @@ namespace WPF
         public ApplicationData()
         {
             this.LesClients = Client.Read();
+            this.LesVehicules = Vehicule.Read();
             
             //this.LesAssurances = ASSURANCE.Read()
         }

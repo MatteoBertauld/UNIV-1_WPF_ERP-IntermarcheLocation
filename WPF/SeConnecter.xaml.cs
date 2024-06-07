@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -60,7 +61,8 @@ namespace WPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            IdentifiantSaisie = "bertaulm";
+            MotDePasseSaisie = "AOD20J";
             Console.WriteLine("Identifiant saisie : " + IdentifiantSaisie + "\nMot de passe Saisie : " + MotDePasseSaisie);
             if (DataAccess.Instance.ConnexionBD())
             {
@@ -79,7 +81,8 @@ namespace WPF
             MotDePasseSaisie = TextBoxMotDePasse.Text;
         }
 
-        private void Label_MouseEnter(object sender, MouseEventArgs e)
+
+        private void ButtonMotDePasseOubliee_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult res = MessageBox.Show(
                 "Vérifier que l'identifiant et le mot de passe saisie correspond " +

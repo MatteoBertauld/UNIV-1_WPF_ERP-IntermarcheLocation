@@ -20,7 +20,7 @@ namespace WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ApplicationData data;
+        public static ApplicationData data;
         private bool Filtre = false;
         bool clientSelectionner = true;
         bool creerNouveauClient;
@@ -55,20 +55,25 @@ namespace WPF
 
         public MainWindow()
         {
-            data = new ApplicationData();
-            InitializeComponent();
-            InitialiserFenetreFicheClient();
+            
             SeConnecter fenetreConnexion = new SeConnecter();
             fenetreConnexion.ShowDialog();
             if (fenetreConnexion.DialogResult == false)
             {
                 System.Windows.Application.Current.Shutdown();
             }
+            else
+            {
+                data = new ApplicationData();
+                this.DataContext = data;
+                InitializeComponent();
+                InitialiserListeFicheClient();
+            }
         }
 
         // Fenetre Fiche Client
 
-        private void InitialiserFenetreFicheClient()
+        private void InitialiserListeFicheClient()
         {
             ComboBoxSelectionClient.Items.Clear();
             ComboBoxSelectionClient.Items.Add("Selectionner un Client");
@@ -94,37 +99,6 @@ namespace WPF
 
 
 
-        /*
-        private void ButtonValiderFicheClient_Click(object sender, RoutedEventArgs e)
-        {
-            if (ButtonNouveauClient.IsChecked == true)
-            {
-                FicheClient client = new FicheClient();
-                client.ShowDialog();
-                
-                ClientSelectionner = true;
-                bool estParticulier = false;
-                /*
-                if (ButtonEntreprise.IsChecked == true){ estParticulier = true; }
-                Client c = new Client(TextBoxNom.Text, TextBoxPrenom.Text, TextBoxAdresse.Text, TextBoxVille.Text, TextBoxCodePostal.Text, TextBoxTelephone.Text, TextBoxMail.Text, estParticulier);
-                c.Create();
-                
-            }
-
-            if (ComboBoxSelectionClient.SelectedIndex != 0) { ClientSelectionner = true; }
-
-            if (ClientSelectionner)
-            {
-                GridReservationVehicule.Visibility = Visibility.Visible;
-                GridFicheClient.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                Console.WriteLine("Erreur : Aucun client n'est séléctionner");
-            }
-        }
-        */
-
 
         private void ComboBoxSelectionClient_Selected(object sender, RoutedEventArgs e)
         {
@@ -132,17 +106,6 @@ namespace WPF
             if (ComboBoxSelectionClient.SelectedIndex > 0)
             {
                 Client clientSelectionner = (Client)data.LesClients[ComboBoxSelectionClient.SelectedIndex - 1];
-                
-                /*
-                TextBoxNom.Text = clientSelectionner.NomClient;
-                TextBoxPrenom.Text = clientSelectionner.PrenomClient;
-                TextBoxAdresse.Text = clientSelectionner.AdresseRueClient;
-                TextBoxVille.Text = clientSelectionner.AdresseVilleClient;
-                TextBoxCodePostal.Text = clientSelectionner.AdresseCpClient;
-                TextBoxTelephone.Text = clientSelectionner.Telephone;
-                TextBoxMail.Text = clientSelectionner.Mail;
-                ButtonEntreprise.IsChecked = clientSelectionner.EstParticuler;
-                */
             }
         }
 

@@ -16,8 +16,8 @@ namespace WPF
         private static string strConnexion =
             "Server=srv-peda-new;" +
             "port=5433;" +
-            "Database=SAE201_Intermarche;" +
-            "Search Path=sae;";
+            "Database=bd_intermarche;" +
+            "Search Path=schema_intermarche;";
 
 
         
@@ -42,14 +42,12 @@ namespace WPF
 
         public bool ConnexionBD()
         {
-            
-
             try
             {
                 Connexion = new NpgsqlConnection();
-                strConnexion += "uid="+ SeConnecter.IdentifiantSaisie + ";" + "password=" + SeConnecter.MotDePasseSaisie + ";";
-                Console.WriteLine(strConnexion);
-                Connexion.ConnectionString = strConnexion;
+                string chaineConnexion = strConnexion + "uid=" + SeConnecter.IdentifiantSaisie + ";" + "password=" + SeConnecter.MotDePasseSaisie + ";";
+                Console.WriteLine(chaineConnexion);
+                Connexion.ConnectionString = chaineConnexion;
                 Connexion.Open();
                 return true;
             }

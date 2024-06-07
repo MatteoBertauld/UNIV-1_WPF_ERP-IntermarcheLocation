@@ -12,6 +12,7 @@
     MinHeight="500"
     WindowState="Maximized"
     mc:Ignorable="d">
+
     <TabControl>
 
         <TabItem Header="ReservationVehicule">
@@ -93,16 +94,18 @@
                         Height="30"
                         VerticalAlignment="Center"
                         SelectionChanged="ComboBoxSelectionClient_Selected" />
-                    <Button x:Name="ButtonAfficherDetailClient" 
-                        Content="Afficher Détail Client" 
-                        Background="{x:Null}" 
-                        Foreground="#FF3461D0" 
-                        BorderBrush="{x:Null}" 
-                        HorizontalAlignment="Right" 
-                        VerticalAlignment="Top" 
-                        FontWeight="Bold" 
-                        FontSize="10" 
-                        Margin="0,0,5,0" Click="ButtonAfficherDetailClient_Click"/>
+                    <Button
+                        x:Name="ButtonAfficherDetailClient"
+                        Margin="0,0,5,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}"
+                        Click="ButtonAfficherDetailClient_Click"
+                        Content="Afficher Détail Client"
+                        FontSize="10"
+                        FontWeight="Bold"
+                        Foreground="#FF3461D0" />
 
                     <Label
                         Margin="0,5,0,0"
@@ -184,9 +187,26 @@
                         <ComboBoxItem IsSelected="True">Assurance</ComboBoxItem>
                         <ComboBoxItem>Avec Assurance</ComboBoxItem>
                     </ComboBox>
-                    
+
 
                 </StackPanel>
+
+
+
+                <!--
+                    Immatriculation = immatriculation;
+                    TypeBoite = typeBoite;
+                    NumMagasin = numMagasin;
+                    NomCategorie = nomCategorie;
+                    NomVehicule = nomVehicule;
+                    DescriptionVehicule = descriptionVehicule;
+                    NombrePlaces = nombrePlaces;
+                    PrixLocation = prixLocation;
+                    Climatisation = climatisation;
+                    NomCarburant = carburant;
+                    ValiditePermis = validite_permis;
+                    LienPhotoUrl = lienPhotoUrl;
+                -->
 
                 <DataGrid
                     Name="DataGridRechercheVehicule"
@@ -194,17 +214,53 @@
                     Grid.Column="3"
                     AutoGenerateColumns="False"
                     IsReadOnly="True"
-                    ItemsSource="{Binding LesVoitures}">
+                    ItemsSource="{Binding LesVehicules}">
                     <DataGrid.Columns>
 
                         <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding Nom}"
+                            Width="1*"
+                            Binding="{Binding TypeBoite}"
+                            Header="Boite" />
+                        <DataGridTextColumn
+                            Width="1.5*"
+                            Binding="{Binding NumMagasin}"
+                            Header="Magasin" />
+                        <DataGridTextColumn
+                            Width="2*"
+                            Binding="{Binding NomCategorie}"
+                            Header="Categorie" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding NomVehicule}"
                             Header="Nom" />
                         <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding Categorie}"
-                            Header="Prenom" />
+                            Width="2*"
+                            Binding="{Binding DescriptionVehicule}"
+                            Header="Description" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding NombrePlaces}"
+                            Header="Places" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding PrixLocation}"
+                            Header="Prix" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding Climatisation}"
+                            Header="Clim" />
+                        <DataGridTextColumn
+                            Width="1.5*"
+                            Binding="{Binding NomCarburant}"
+                            Header="Carburant" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding ValiditePermis}"
+                            Header="Permis" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding LienPhotoUrl}"
+                            Header="Photo" />
                     </DataGrid.Columns>
                 </DataGrid>
 
@@ -220,12 +276,63 @@
                     FontSize="18" />
 
 
-
-                <ListBox
-                    x:Name="ListeBoxVehiculeChoisit"
+                <DataGrid
+                    x:Name="DataGridVehiculeChoisit"
                     Grid.Row="4"
                     Grid.RowSpan="2"
-                    Grid.Column="3" />
+                    Grid.Column="3" 
+                    AutoGenerateColumns="False"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding LesVehicules}">
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding TypeBoite}"
+                            Header="Boite" />
+                        <DataGridTextColumn
+                            Width="1.5*"
+                            Binding="{Binding NumMagasin}"
+                            Header="Magasin" />
+                        <DataGridTextColumn
+                            Width="2*"
+                            Binding="{Binding NomCategorie}"
+                            Header="Categorie" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding NomVehicule}"
+                            Header="Nom" />
+                        <DataGridTextColumn
+                            Width="2*"
+                            Binding="{Binding DescriptionVehicule}"
+                            Header="Description" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding NombrePlaces}"
+                            Header="Places" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding PrixLocation}"
+                            Header="Prix" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding Climatisation}"
+                            Header="Clim" />
+                        <DataGridTextColumn
+                            Width="1.5*"
+                            Binding="{Binding NomCarburant}"
+                            Header="Carburant" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding ValiditePermis}"
+                            Header="Permis" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding LienPhotoUrl}"
+                            Header="Photo" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
                 <Button
                     x:Name="ButtonValider"
                     Grid.Row="6"

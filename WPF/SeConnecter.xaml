@@ -13,7 +13,6 @@
     MinHeight="500"
     mc:Ignorable="d">
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="0.2*" />
@@ -58,15 +57,15 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-		<TextBox
+        <TextBox
             x:Name="TextBoxIdentifiant"
             Grid.Row="3"
             Grid.Column="2"
             Grid.ColumnSpan="4"
+            Text="{Binding Nom}"
             TextChanged="TextBoxIdentifiant_TextChanged"
-            TextWrapping="Wrap"
-			Text="{Binding Nom}"/>
-			
+            TextWrapping="Wrap" />
+
         <Label
             Grid.Row="2"
             Grid.Column="3"
@@ -80,11 +79,9 @@
             Grid.Column="2"
             Grid.ColumnSpan="4"
             FontSize="18"
-            Text="AOD20J"
+            Text="{Binding Mot De Passe}"
             TextChanged="TextBoxMotDePasse_TextChanged"
-            TextWrapping="Wrap"
-			Text="{Binding Mot De Passe }"
-			/>
+            TextWrapping="Wrap" />
         <Label
             Grid.Row="4"
             Grid.Column="3"
@@ -114,17 +111,21 @@
             VerticalAlignment="Top"
             Source="/Images/oeil.png"
             Stretch="Fill" />
-        <Label
+
+        <Button
+            x:Name="ButtonMotDePasseOubliee"
             Grid.Row="6"
             Grid.Column="3"
             Grid.ColumnSpan="3"
             HorizontalAlignment="Right"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            Click="ButtonMotDePasseOubliee_Click"
             Content="Mot de passe oublié ?"
             FontSize="14"
             FontWeight="Bold"
-            Foreground="#FF4A94CC"
-            MouseEnter="Label_MouseEnter" />
+            Foreground="#FF3461D0" />
         <Image
             Grid.Row="5"
             Grid.Column="1"

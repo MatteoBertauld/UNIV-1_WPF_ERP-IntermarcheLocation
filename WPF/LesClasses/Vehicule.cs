@@ -19,6 +19,8 @@ namespace WPF
         private int nombrePlaces;
         private decimal prixLocation;
         private bool climatisation;
+        private string nomCarburant;
+        private int validitePermis;
         private string lienPhotoUrl;
 
 
@@ -154,7 +156,33 @@ namespace WPF
             }
         }
 
-        public Vehicule(string immatriculation, string typeBoite, int numMagasin, string nomCategorie, string nomVehicule, string descriptionVehicule, int nombrePlaces, decimal prixLocation, bool climatisation, string lienPhotoUrl)
+        public string NomCarburant
+        {
+            get
+            {
+                return nomCarburant;
+            }
+
+            set
+            {
+                nomCarburant = value;
+            }
+        }
+
+        public int ValiditePermis
+        {
+            get
+            {
+                return this.validitePermis;
+            }
+
+            set
+            {
+                this.validitePermis = value;
+            }
+        }
+
+        public Vehicule(string immatriculation, string typeBoite, int numMagasin, string nomCategorie, string nomVehicule, string descriptionVehicule, int nombrePlaces, decimal prixLocation, bool climatisation,string carburant,int validite_permis, string lienPhotoUrl)
         {
             Immatriculation = immatriculation;
             TypeBoite = typeBoite;
@@ -165,6 +193,8 @@ namespace WPF
             NombrePlaces = nombrePlaces;
             PrixLocation = prixLocation;
             Climatisation = climatisation;
+            NomCarburant = carburant;
+            ValiditePermis = validite_permis;
             LienPhotoUrl = lienPhotoUrl;
         }
 
@@ -175,9 +205,10 @@ namespace WPF
             DataTable dt = DataAccess.Instance.GetData(sql);
             if (dt != null)
             {
+                Console.WriteLine("");
                 foreach (DataRow res in dt.Rows)
                 {
-                    Console.WriteLine("ligne : " + res);
+                    Console.WriteLine("VEHICULE\n\nligne : " + res);
                     Vehicule nouveauVehicule = new Vehicule(
                         res["immatriculation"].ToString(),
                         res["type_boite"].ToString(),
@@ -188,13 +219,20 @@ namespace WPF
                         (int)res["nombre_places"],
                         (decimal)(res["prix_location"]),
                         (bool)res["climatisation"],
-                        res["lien_phoo_url"].ToString()
+                        res["nom_carburant"].ToString(),
+                        (int)res["validite_permis"],
+                        res["lien_photo_url"].ToString()
                         );
                     lesVehicule.Add(nouveauVehicule);
+                    Console.WriteLine(nouveauVehicule);
                 }
             }
             return lesVehicule;
         }
 
+        public override string? ToString()
+        {
+            return "Nom" + this.NomVehicule;
+        }
     }
 }

@@ -36,9 +36,9 @@ namespace WPF
 
             set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
-                    throw new ArgumentException(" le numéro de cleint doit etre supérieur à 0");
+                    throw new ArgumentException(" le numéro de client doit etre supérieur à 0");
                 }
                 numClient = value;
             }
@@ -53,7 +53,7 @@ namespace WPF
 
             set
             {
-                if(string.IsNullOrEmpty(nomClient)) { throw new ArgumentException("ATTENTION, la valeur ne doit etre ni nulle ni vide !"); }
+                //if(string.IsNullOrEmpty(nomClient)) { throw new ArgumentException("ATTENTION, la valeur ne doit etre ni nulle ni vide !"); }
                 nomClient = value;
             }
         }
@@ -113,12 +113,12 @@ namespace WPF
 
             set
             {
-                try
-                {
-                    MailAddress email = new MailAddress(value);
-                    this.Mail = value;
-                }
-                catch (Exception ex) { throw new ArgumentException("L'email est invalide");}
+                //try
+                //
+                    //MailAddress email = new MailAddress(value);
+                    this.mail = value;
+                //}
+                //catch (Exception ex) { throw new ArgumentException("L'email est invalide");}
                
             }
         }
@@ -132,8 +132,8 @@ namespace WPF
 
             set
             {
-                if (!Regex.IsMatch(value, "^[0-9]{5}$"))
-                    throw new ArgumentException("Le téléphone portable est incorrect, il faut saisir 10 chiffres");
+                //if (!Regex.IsMatch(value, "^[0-9]{5}$"))
+                    //throw new ArgumentException("Le téléphone portable est incorrect, il faut saisir 10 chiffres");
 
                 this.telephone = value;
             }
@@ -212,6 +212,7 @@ namespace WPF
             DataTable dt = DataAccess.Instance.GetData(sql);
             if (dt != null)
             {
+                Console.WriteLine("ligne " + dt);
                 foreach (DataRow res in dt.Rows)
                 {
                     Console.WriteLine("ligne : " + res);
@@ -223,7 +224,7 @@ namespace WPF
                         res["adresse_ville_client"].ToString(),
                         res["telephone_client"].ToString(),
                         res["mail_client"].ToString(),
-                        (bool)res["estparticulier"]
+                        (bool)res["est_particulier"]
                         );
                     lesClients.Add(nouveau);
                 }

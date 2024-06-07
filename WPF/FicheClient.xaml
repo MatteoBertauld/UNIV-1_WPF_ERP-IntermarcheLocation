@@ -11,6 +11,7 @@
     mc:Ignorable="d">
     <Grid>
         <StackPanel
+            x:Name="StackPanelFicheClient"
             Grid.Row="5"
             Grid.Column="1"
             Grid.ColumnSpan="2">
