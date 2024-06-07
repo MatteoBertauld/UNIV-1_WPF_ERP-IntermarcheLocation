@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -71,6 +72,7 @@ namespace WPF
             }
         }
 
+
         // Fenetre Fiche Client
 
         private void InitialiserListeFicheClient()
@@ -135,8 +137,21 @@ namespace WPF
 
         private void ButtonAjouterVehicule_Click(object sender, RoutedEventArgs e)
         {
-            ListeBoxVehiculeChoisit.Items.Add("Véhicule");
+            Vehicule vehiculeSelectionner = (Vehicule)DataGridRechercheVehicule.SelectedItem;
+            Console.WriteLine(vehiculeSelectionner);
+            data.LesvehiculeSelectionner.Add(vehiculeSelectionner);
         }
 
+        private void ButtonRetirerVehicule_Click(object sender, RoutedEventArgs e)
+        {
+            Vehicule vehiculeSelectionner = (Vehicule)DataGridVehiculeChoisit.SelectedItem;
+            Console.WriteLine(vehiculeSelectionner);
+            data.LesvehiculeSelectionner.Remove(vehiculeSelectionner);
+        }
+
+        private void ButtonFiltreBoiteVitesse(object sender, RoutedEventArgs e)
+        {
+            //Vehicule.NomVehicule.StartsWith("Manuelle", StringComparison.OrdinalIgnoreCase);
+        }
     }
 }

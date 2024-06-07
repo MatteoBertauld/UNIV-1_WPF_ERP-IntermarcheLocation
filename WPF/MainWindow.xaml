@@ -264,26 +264,48 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <Button
-                    x:Name="ButtonAjouterVehicule"
+                <StackPanel
+                    Orientation="Horizontal"
                     Grid.Row="3"
                     Grid.Column="3"
-                    Width="50"
                     HorizontalAlignment="Center"
-                    VerticalContentAlignment="Center"
+                    >
+
+                    <Button
+                    x:Name="ButtonAjouterVehicule"
+                    Width="50"
                     Click="ButtonAjouterVehicule_Click"
                     Content="\/"
+                    FontSize="18" Margin="0,0,25,0" />
+
+                    <Button
+                    x:Name="FiltreVehicule"
+                    Width="150"
+                    Click="ButtonAjouterVehicule_Click"
+                    Content="Boite : Manuelle"
                     FontSize="18" />
+
+
+                    <Button
+                    x:Name="RetirerVehicule"
+                    Width="50"
+                    Click="ButtonRetirerVehicule_Click"
+                    Content="X"
+                    FontSize="18" Margin="25,0,0,0" />
+
+
+                </StackPanel>
+                
 
 
                 <DataGrid
                     x:Name="DataGridVehiculeChoisit"
                     Grid.Row="4"
                     Grid.RowSpan="2"
-                    Grid.Column="3" 
+                    Grid.Column="3"
                     AutoGenerateColumns="False"
                     IsReadOnly="True"
-                    ItemsSource="{Binding LesVehicules}">
+                    ItemsSource="{Binding LesvehiculeSelectionner}">
                     <DataGrid.Columns>
 
                         <DataGridTextColumn

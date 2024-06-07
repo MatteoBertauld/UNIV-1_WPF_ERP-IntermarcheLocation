@@ -24,6 +24,8 @@ namespace WPF
             private ObservableCollection<Reservation> lesReservation;
             private ObservableCollection<Vehicule> lesVehicules;
 
+            private ObservableCollection<Vehicule> lesvehiculeSelectionner  = new ObservableCollection<Vehicule>();
+
         public ObservableCollection<Client> LesClients
         {
             get
@@ -139,6 +141,19 @@ namespace WPF
             set
             {
                 this.lesVehicules = value;
+            }
+        }
+
+        public ObservableCollection<Vehicule> LesvehiculeSelectionner
+        {
+            get
+            {
+                return this.lesvehiculeSelectionner;
+            }
+
+            set
+            {
+                this.lesvehiculeSelectionner = value;
             }
         }
 
